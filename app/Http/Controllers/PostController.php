@@ -4,8 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\PostModel;
+use App\CategorieModel;
+use App\PostInformationModel;
+use App\TagModel;
+use App\TagPostModel;
+use Illuminate\Support\Str;
+use App\User;
+use Illuminate\Pagination\Paginator;
 
-class TestController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +22,10 @@ class TestController extends Controller
      */
     public function index()
     {
-        //
+        $data = PostModel::all();
+        $tag = TagModel::all();
+        $user = User::paginate(10);
+        return view('home', compact('data', 'user', 'tag'));
     }
 
     /**
@@ -24,7 +35,6 @@ class TestController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -46,7 +56,7 @@ class TestController extends Controller
      */
     public function show($id)
     {
-        //
+       //
     }
 
     /**

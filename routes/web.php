@@ -13,18 +13,19 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
+Route::get('/', 'PostController@index');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('home', 'PostController@index');
 
-Route::prefix('free-zone')->group(function(){
-    Route::get('/', 'TestController@guest')->name('freeZone');
-});
+Route::resource('post', 'PostController');
 
-Route::prefix('restricted-zone')->middleware('auth')->group(function(){
-    Route::get('/', 'TestController@logged')->name('restrictedZone');
-});
+//Route::prefix('free-zone')->group(function(){
+ //   Route::get('/', 'PostController@guest')->name('freeZone');
+//});
+
+//Route::prefix('restricted-zone')->middleware('auth')->group(function(){
+//    Route::get('/', 'PostController@logged')->name('restrictedZone');
+//});

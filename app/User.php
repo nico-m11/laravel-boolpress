@@ -5,9 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\PostModel;
+use App\User;
 class User extends Authenticatable
-{
+{   
+    protected $table = 'users';
+
     use Notifiable;
 
     /**
@@ -36,4 +39,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-}
+
+    public function post() {
+       return $this->belongsTo('App\PostModel', 'user_id', 'id');
+    }
+}   

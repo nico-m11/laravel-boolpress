@@ -94,6 +94,11 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                    @if(Auth::check())
+                        <a href="{{ route('home') }}">Ciao</a>
+                    @else 
+                        <a href="{{ route('login') }}">Ciao</a>
+                    @endif
             </div>
         </div>
     </body>
