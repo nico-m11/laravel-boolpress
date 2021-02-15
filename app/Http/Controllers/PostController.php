@@ -24,8 +24,8 @@ class PostController extends Controller
     {
         $data = PostModel::all();
         $tag = TagModel::all();
-        $user = User::paginate(10);
-        return view('home', compact('data', 'user', 'tag'));
+        $page = PostModel::paginate(10);
+        return view('home', compact('data', 'page', 'tag'));
     }
 
     /**
@@ -56,7 +56,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-       //
+       $data = PostModel::find($id);
+       return view('detail', compact('data'));
     }
 
     /**

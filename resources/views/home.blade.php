@@ -33,6 +33,6 @@
 </div>
 @endforeach
 <div class="col-2 offset-5">
-    {{ $user->links() }}
+    {{ $page->links() }}
 </div>
 @endsection
