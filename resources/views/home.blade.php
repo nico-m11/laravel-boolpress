@@ -3,7 +3,7 @@
 @section('content')
  
 <div class=' ml-5 mb-5'>
-  <a class="btn btn btn-primary mt-5" href="#">Crea Nuovo Utente</a>
+  <a class="btn btn btn-primary mt-5" href="{{ route('post.create', $key->id) }}">Crea Nuovo Utente</a>
 </div>
     
   
@@ -21,13 +21,18 @@
     @else
     <p class="card-text">Nessuna descrizione </p>
     @endif  
+    @if(Auth::check())
     <a class="btn btn btn-primary" href="{{ route('post.show', $key->id) }}">Dettagli</a>
-    <a class="btn btn btn-primary" href="#">Modifica</a>
-    <form method="post" class="d-inline"action="#">
+    <a class="btn btn btn-primary" href="{{ route('post.edit', $key->id) }}">Modifica</a>
+    <form method="post" class="d-inline"action="{{route('post.destroy', $key->id)}}">
         @csrf
         @method('delete')
        <input type="submit" class="btn btn-outline-danger" value="Elimina"> 
      </form>
+     @else 
+       <a href="{{ route('login') }}">Ciao</a>
+      @endif
+    
       
   </div>
 </div>
